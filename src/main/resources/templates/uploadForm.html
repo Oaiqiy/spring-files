@@ -18,14 +18,17 @@
 		<ul>
 			<form method="POST" th:each="file : ${files}" th:action="${file}">
 				<li >
-					<a th:href="${file}" th:text="${#strings.substring(file,#strings.length(root))}" />
 
+					<a th:href="${file}" th:text="${#strings.substring(file,#strings.length(root))}"></a>
 					<button type="submit" style="color: crimson" th:value="${file}">X</button>
 
 				</li>
 			</form>
 		</ul>
 	</div>
+
+
+
 
 </body>
 </html>

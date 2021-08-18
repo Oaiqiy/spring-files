@@ -33,9 +33,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>spring-files</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

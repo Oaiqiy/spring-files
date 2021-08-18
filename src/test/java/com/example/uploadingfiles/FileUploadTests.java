@@ -42,8 +42,8 @@ public class FileUploadTests {
 
 		this.mvc.perform(get("/")).andExpect(status().isOk())
 				.andExpect(model().attribute("files",
-						Matchers.contains("http://localhost/files/first.txt",
-								"http://localhost/files/second.txt")));
+						Matchers.contains("https://localhost/files/first.txt",
+								"https://localhost/files/second.txt")));
 	}
 
 	@Test

@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.uploadingfiles.storage.StorageProperties;
 import com.example.uploadingfiles.storage.StorageService;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
+@EnableScheduling
 public class UploadingFilesApplication {
 
 	public static void main(String[] args) {

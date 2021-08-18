@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +27,7 @@ import com.example.uploadingfiles.storage.StorageFileNotFoundException;
 import com.example.uploadingfiles.storage.StorageService;
 
 @Controller
+@Slf4j
 public class FileUploadController {
 
 	private final StorageService storageService;
@@ -38,9 +40,9 @@ public class FileUploadController {
 	@GetMapping("/")
 	public String listUploadedFiles(Model model) throws IOException {
 
-		String root = MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,"serveFile","").toUriString();
+		String root = MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,"serveFile","").scheme("https").toUriString();
 
-
+		//log.info(root);
 
 		//Path rootPath = Paths.get(root);
 //		model.addAttribute("files", storageService.loadAll().map(
@@ -71,6 +73,7 @@ public class FileUploadController {
 			storageService.store(file);
 			redirectAttributes.addFlashAttribute("message",
 					"You successfully uploaded " + file.getOriginalFilename() + "!");
+			log.info("uploaded " + file.getOriginalFilename() );
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -84,6 +87,8 @@ public class FileUploadController {
 		storageService.delete(filename);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully delete " + filename + "!");
+
+		log.info("delete " + filename);
 		return "redirect:/";
 	}
 
